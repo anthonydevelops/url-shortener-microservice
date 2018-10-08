@@ -4,7 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client-install": "cd client && npm install",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "repository": {
     "type": "git",
@@ -17,7 +22,13 @@
   },
   "homepage": "https://github.com/anthonydevelops/url-shortener-microservice#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",
-    "express": "^4.16.3"
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "mongoose": "^5.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
   }
 }
