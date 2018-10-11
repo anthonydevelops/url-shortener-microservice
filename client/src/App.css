@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", sans-serif;
+}
+
+html {
+  background-color: #678a98;
+}
+
+.title {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 3.5vh;
+  font-weight: bold;
+}
+
+section {
+  margin-top: 3rem;
+  margin-right: 20%;
+  margin-left: 20%;
+}
+
+.stories-title {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.stories-1,
+.stories-2,
+.stories-3 {
+  margin-top: 1rem;
+}
+
+.url-form {
+  border-radius: 5px;
+  margin: 3rem auto;
+  padding: 3%;
+  max-width: 50%;
+  border: 2px solid black;
+  text-align: center;
+}
+
+label {
+  margin-right: 10px;
+}
+
+input {
+  padding: 5px;
+}
+
+input[type="text"] {
+  width: 200px;
+  text-align: left;
+}
+
+input[type="submit"] {
+  margin-left: 3px;
+  border-radius: 2px;
+  background-color: #b096f3;
+  color: black;
+  border: 0.5px solid #b096f3;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+input[type="submit"]:hover {
+  background-color: #7f71a5;
+  border: 0.5px solid #7f71a5;
+  color: white;
+}
+
+@media only screen and (max-width: 480px) {
+  input[type="text"] {
+    width: 150px;
+  }
+}
