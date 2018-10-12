@@ -34,7 +34,7 @@ class App extends Component {
               <label htmlFor="url_input">Input a URL</label>
               <input
                 id="url_input"
-                type="text"
+                type="url"
                 name="url"
                 placeholder="https://www.google.com"
               />
