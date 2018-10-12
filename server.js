@@ -52,7 +52,10 @@ app.get("/api/shorturl/:url", (req, res) => {
   // Find short url of specified param
   Post.findOne({ short_url: req.params.url })
     .then(url => {
-      res.redirect(url.original_url);
+      res.redirect(301, url.original_url);
+      // res.send({
+      //   go_to: `http://localhost:5000/api/shorturl/${url.short_url}`
+      // });
     })
     .catch(e => {
       res.status(404).send(e);
