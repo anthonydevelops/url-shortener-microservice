@@ -36,7 +36,7 @@ class App extends Component {
                 id="url_input"
                 type="url"
                 name="url"
-                placeholder="https://www.google.com"
+                placeholder="https://github.com"
               />
               <input type="submit" id="button" value="Post URL" />
             </form>

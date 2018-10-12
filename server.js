@@ -7,11 +7,11 @@ const validUrl = require("valid-url");
 const path = require("path");
 const cors = require("cors");
 
+// Post Model Schema
 const Post = require("./models/Post");
 
 const app = express();
 const port = process.env.PORT || 5000;
-let index = 0;
 
 // Middleware
 app.use(bodyParser.json());
@@ -20,34 +20,43 @@ app.use(cors());
 
 // Connect to MongoDB
 const db = require("./config/keys").mongoURI;
-
 mongoose
   .connect(db)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.log(err));
 
-// Api Calls
-app.post("/api/shorturl/new", (req, res) => {
-  // Check if post was received
-  if (!req.body) {
-    return res.status(400).json(errors);
-  }
+// Create random num links
+const newLink = () => {
+  const num = Math.floor(100000 + Math.random() * 900000);
+  return num.toString().substring(0, 4);
+};
 
-  // Check if url is valid
-  if (!validUrl.isUri(req.body.url)) {
+// ------------ Api Calls ------------
+app.post("/api/shorturl/new", (req, res) => {
+  if (!req.body || !validUrl.isUri(req.body.url)) {
     return res.status(400).json(errors);
   }
 
   // Create new Post Schema object w/ data
   const newPost = new Post({
     original_url: req.body.url,
-    short_url: "" + index
+    short_url: newLink()
   });
 
-  // Save data to db, then return data to user
-  newPost.save().then(post => res.json(post));
+  // Save data to db, then log data
+  res.send(newPost);
+  newPost.save().then(console.log("Url saved successfully"));
+});
 
-  index++;
+app.get("/api/shorturl/:url", (req, res) => {
+  // Find short url of specified param
+  Post.findOne({ short_url: req.params.url })
+    .then(url => {
+      res.redirect(url.original_url);
+    })
+    .catch(e => {
+      res.status(404).send(e);
+    });
 });
 
 // Heroku setup

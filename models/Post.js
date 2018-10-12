@@ -5,12 +5,14 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
   original_url: {
     type: String,
+    trim: true,
     required: true
   },
   short_url: {
-    type: Number,
+    type: String,
+    trim: true,
     required: true
   }
 });
 
-module.exports = Post = mongoose.model("post", PostSchema);
+module.exports = Post = mongoose.model("Post", PostSchema);
